@@ -1,0 +1,36 @@
+.editListContainer {
+  width: 100%;
+}
+.editTotoUnderline {
+  width: 100%;
+  position: relative;
+  padding-bottom: 0.23rem;
+}
+
+.editTotoUnderline::after {
+  position: absolute;
+  content: "";
+  height: 1px;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  background-color: hsl(235, 19%, 35%);
+  width: 100%;
+  animation: formContainer 0.23s linear forwards;
+  transform: scale(0);
+}
+
+.editTodoInput {
+  width: 100%;
+  background-color: inherit;
+  margin: 0;
+  outline: none;
+  border: none;
+  color: hsl(235, 19%, 35%);
+}
+
+@keyframes formContainer {
+  100% {
+    transform: scale(1);
+  }
+}

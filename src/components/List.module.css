@@ -1,0 +1,31 @@
+.blueBg {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  z-index: 1;
+  opacity: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(150deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+}
+
+.listCheckbox {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+.listCheckbox:checked ~ .blueBg {
+  opacity: 1;
+}
+.blueOutline {
+  outline-color: hsl(192, 100%, 67%);
+}
+
+#strike {
+  text-decoration-line: line-through;
+  color: hsl(236, 9%, 61%);
+  opacity: 0.7;
+}
