@@ -1,5 +1,5 @@
 import MoreVertIcon from "../icons/MoreVertIcon.svg";
-import EditOutlinedIcon from "../icons/EditOutlinedIcon.svg";
+import EditOutlinedIcon from "../icons/EditOutLinedIcon.svg";
 import DeleteOutlinedIcon from "../icons/DeleteOutlinedIcon.svg";
 import styles from "./MoreOptions.module.css";
 import { useRef } from "react";
