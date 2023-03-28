@@ -15,7 +15,7 @@ export default function useDeleteManyTask() {
     mutationFn: async (variables: variablesType) => {
       try {
         const { data } = await axios.post(
-          `${process.env.NEXT_PUBLIC_DOMAIN_URL}api/deleteMany`,
+          `${process.env.NEXT_PUBLIC_DOMAIN_URL}/api/deleteMany`,
           {
             userId: variables.userId,
           }

@@ -7,7 +7,7 @@ function useFetchAllTask(tasks: task[]) {
     queryKey: ["allTodos"],
     queryFn: async () => {
       const { data } = await axios.get(
-        `${process.env.NEXT_PUBLIC_DOMAIN_URL}api/allTodos`
+        `${process.env.NEXT_PUBLIC_DOMAIN_URL}/api/allTodos`
       );
       return data;
     },
