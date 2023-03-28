@@ -208,7 +208,7 @@ export default function Home({ tasks }: any) {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
 
-  const res = await axios.get(`${process.env.DOMAIN_URL}/api/allTodos`)
+  const res = await axios.get(`${process.env.NEXT_PUBLIC_DOMAIN_URL}api/allTodos`)
   const { tasks } = await res.data;
 
 
