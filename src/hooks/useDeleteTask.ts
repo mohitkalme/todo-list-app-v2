@@ -11,7 +11,7 @@ export default function useDeleteTask() {
   return useMutation({
     mutationFn: async (variables: variablesType) => {
       const { data } = await axios.post(
-        "http://localhost:3000/api/deleteTodo",
+        `${process.env.DOMAIN_URL}/api/deleteTodo`,
         {
           id: variables.id,
         }

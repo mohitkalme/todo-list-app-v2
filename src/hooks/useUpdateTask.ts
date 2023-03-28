@@ -13,7 +13,7 @@ export default function useUpdateTask() {
   return useMutation({
     mutationFn: async (variables: variablesType) => {
       const { data } = await axios.post(
-        "http://localhost:3000/api/updateTodos",
+        `${process.env.DOMAIN_URL}/api/updateTodos,
         {
           id: variables.id,
           value: variables.value,

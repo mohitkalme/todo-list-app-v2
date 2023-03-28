@@ -10,7 +10,7 @@ export default function useCreateTask() {
     mutationFn: async (variables: { value: string }) => {
       try {
         const { data } = await axios.post(
-          "http://localhost:3000/api/createTodos",
+          `${process.env.DOMAIN_URL}/api/createTodos`,
           {
             value: variables.value,
           }
