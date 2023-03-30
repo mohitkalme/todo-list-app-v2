@@ -24,6 +24,8 @@ export default async function handler(
         },
       });
       res.status(200).json({ message: "Task deleted" });
+    } else {
+      res.status(200).json({ message: "User Doesn't Exist" });
     }
   } catch (e) {
     res.status(500).json({ message: "You must be logged in." });

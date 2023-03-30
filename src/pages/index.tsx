@@ -40,9 +40,9 @@ type HomePropsType = {
 }
 
 
-export default function Home({ tasks }: any) {
+export default function Home({ tasks, user }: any) {
 
-  const { data: session } = useSession()
+  // const { data: session } = useSession()
 
   const { data } = useFetchAllTask(tasks);
 
@@ -51,7 +51,7 @@ export default function Home({ tasks }: any) {
 
   function handleClearCompleted() {
     mutate({
-      userEmail: session?.user?.email
+      userEmail: user?.email
     })
   }
 
@@ -91,7 +91,7 @@ export default function Home({ tasks }: any) {
 
 
       {
-        !session &&
+        !user &&
         <Steps
           enabled={stepsEnabled}
           steps={steps}
@@ -104,7 +104,7 @@ export default function Home({ tasks }: any) {
       <div className="bg-very-light-gray h-screen relative">
 
         <header>
-          <Navbar session={session} />
+          <Navbar user={user} />
         </header>
 
         <div className="todo_main flex flex-col mx-auto">
@@ -196,10 +196,6 @@ export default function Home({ tasks }: any) {
               </ul>
             </div>
 
-            <p className="text-light-bottom-text text-center font-bold text-sm tracking-wider mt-10 sm:mt-12">
-              Drag and drop to reorder list
-            </p>
-
           </div>
         </div>
       </div>
@@ -207,16 +203,30 @@ export default function Home({ tasks }: any) {
   );
 }
 
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "./api/auth/[...nextauth]";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const res = await axios.get(`${process.env.NEXT_PUBLIC_DOMAIN_URL}/api/allTodos`)
   const { tasks } = await res.data;
 
+  const session: any = await getServerSession(context.req, context.res, authOptions);
 
-  return {
-    props: {
-      tasks: tasks
-    }, // will be passed to the page component as props
-  };
+  if (session) {
+    return {
+      props: {
+        tasks: tasks,
+        user: session?.user
+      }, // will be passed to the page component as props
+    };
+
+  } else {
+    return {
+      props: {
+        tasks: tasks,
+        user: null
+      }
+    }
+  }
 }

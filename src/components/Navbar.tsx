@@ -2,9 +2,9 @@ import React from "react";
 import { signIn, signOut } from "next-auth/react"
 import Image from "next/image";
 
-const Navbar = ({ session }: any) => {
+const Navbar = ({ user }: any) => {
 
-    if (session) {
+    if (user) {
         return (
             <>
 
@@ -12,10 +12,10 @@ const Navbar = ({ session }: any) => {
 
                     <div className="flex items-center space-x-4 mr-4">
 
-                        <Image src={session.user?.image} className="w-10 h-10 rounded-full" width={10} height={10} alt="profile image" />
+                        <Image src={user?.image} className="w-10 h-10 rounded-full" width={10} height={10} alt="profile image" />
                         <div className="font-medium dark:text-white">
-                            <div>{session.user?.name}</div>
-                            <div className="text-sm text-white">{session.user?.email}</div>
+                            <div>{user?.name}</div>
+                            <div className="text-sm text-white">{user?.email}</div>
                         </div>
                     </div>
 
