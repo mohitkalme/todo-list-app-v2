@@ -7,18 +7,23 @@ export default async function handler(
   res: NextApiResponse<any>
 ) {
   try {
-    const { userId } = req.body;
-    if (userId) {
-      const deleteUsers = await prisma.post.deleteMany({
+    const { userEmail } = req.body;
+    let user = null;
+    if (userEmail) {
+      user = await prisma.user.findUnique({
         where: {
-          userId: userId,
+          email: userEmail,
+        },
+      });
+    }
+    if (user) {
+      const { count } = await prisma.post.deleteMany({
+        where: {
+          userId: user.id,
           completed: true,
         },
       });
-
       res.status(200).json({ message: "Task deleted" });
-    } else {
-      res.status(400).json({ message: "Nothing to delete" });
     }
   } catch (e) {
     res.status(500).json({ message: "You must be logged in." });

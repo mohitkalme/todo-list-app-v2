@@ -9,11 +9,10 @@ import useUpdateTask from "@/hooks/useUpdateTask";
 type EditListProps = {
     task: string;
     taskId: string;
-    isEditing: boolean;
     setIsEditing: (value: boolean) => void
 }
 // setIsEditing
-export default function EditList({ task, taskId, setIsEditing, isEditing }: EditListProps) {
+export default function EditList({ task, taskId, setIsEditing }: EditListProps) {
     const [text, setText] = useState(task);
 
     const { mutate } = useUpdateTask();
@@ -25,17 +24,14 @@ export default function EditList({ task, taskId, setIsEditing, isEditing }: Edit
         inputRef.current?.focus();
     }, []);
 
-    function handleCancel() {
-        // dispatch(editTodo(taskId));
+    function handleCancel(e: React.MouseEvent<HTMLButtonElement>) {
+
+        e.preventDefault()
         setIsEditing(false)
     }
-    function handleSave() {
-        // dispatch(
-        //     updateEditedTodo({
-        //         taskId,
-        //         text,
-        //     })
-        // );
+    function handleSave(e: React.MouseEvent<HTMLButtonElement>) {
+
+        e.preventDefault()
         mutate({
             id: taskId,
             value: text

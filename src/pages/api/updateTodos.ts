@@ -9,17 +9,7 @@ export default async function handler(
 ) {
   try {
     const { id, value, completed } = req.body;
-    if (completed) {
-      const updateUser = await prisma.post.update({
-        where: {
-          id: id,
-        },
-        data: {
-          completed,
-        },
-      });
-      res.status(201).json(updateUser);
-    }
+
     if (value) {
       const updateUser = await prisma.post.update({
         where: {
@@ -29,9 +19,19 @@ export default async function handler(
           value,
         },
       });
-      res.status(201).json(updateUser);
+      res.json(updateUser);
+    } else {
+      const updateUser = await prisma.post.update({
+        where: {
+          id: id,
+        },
+        data: {
+          completed,
+        },
+      });
+      res.json(updateUser);
     }
   } catch (e) {
-    res.status(500).json({ message: "You must be logged in." });
+    res.status(500).json({ message: "You must be logged in.", e });
   }
 }

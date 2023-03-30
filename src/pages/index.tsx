@@ -23,6 +23,7 @@ export type task = {
   id: string;
   value: string;
   completed: boolean;
+  userId: string;
 }
 
 type FilterMapType = {
@@ -50,14 +51,14 @@ export default function Home({ tasks }: any) {
 
   function handleClearCompleted() {
     mutate({
-      userId: data.tasks[0]?.user.id
+      userEmail: session?.user?.email
     })
   }
-  const tasksNoun =
-    data.tasks?.filter(FILTER_MAP["Active"]).length > 1 ? "tasks" : "task";
 
-  const HowManyTodosLeftText = `${data.tasks?.filter(FILTER_MAP["Active"]).length
-    } ${tasksNoun} remaining`;
+  const ActiveTaskNumberChecker = data.tasks?.filter(FILTER_MAP["Active"]).length
+  const tasksNoun = ActiveTaskNumberChecker > 1 ? "tasks" : "task";
+  const taskNumber = !ActiveTaskNumberChecker ? 0 : ActiveTaskNumberChecker
+  const HowManyTodosLeftText = `${taskNumber} ${tasksNoun} remaining`;
 
 
   const [{ stepsEnabled, initialStep, steps, options }, setState] = useState({
@@ -78,6 +79,7 @@ export default function Home({ tasks }: any) {
   function onExit() {
     setState((oldState) => ({ ...oldState, stepsEnabled: false }))
   }
+  console.log('index running')
   return (
     <>
       <Head>

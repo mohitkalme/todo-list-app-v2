@@ -1,6 +1,5 @@
 import React from "react";
 import { motion } from 'framer-motion'
-import iconCheck from "../images/icon-check.svg";
 import styles from './List.module.css'
 import MoreOptions from "./MoreOptions";
 import EditList from "./EditList";
@@ -44,7 +43,7 @@ export default function List({ task }: ListProps) {
             <div className="list-parent relative cursor-pointer flex items-center border border-solid border-transparent border-b-light-border-b bg-very-light-gray p-3 sm:py-[18px] sm:px-[8px] pl-1 sm:pr-4">
 
                 {isEditing ? (
-                    <EditList task={task.value} taskId={task.id} setIsEditing={setIsEditing} isEditing />
+                    <EditList task={task.value} taskId={task.id} setIsEditing={setIsEditing} />
 
                 ) : (
                     <>
@@ -58,9 +57,11 @@ export default function List({ task }: ListProps) {
 
                             <div className={`${styles.blueBg} " w-full h-full rounded-full flex items-center justify-center" `}>
                                 <Image
-                                    src={iconCheck}
+                                    src="/icons/icon-check.svg"
                                     className="w-[26px] h-[17px]"
                                     alt="icon check"
+                                    width={26}
+                                    height={17}
                                 />
                             </div>
                         </div>
@@ -72,7 +73,7 @@ export default function List({ task }: ListProps) {
                             {task.value}
                         </p>
 
-                        <MoreOptions taskId={task.id} setIsEditing={setIsEditing} isEditing />
+                        <MoreOptions taskId={task.id} setIsEditing={setIsEditing} />
                     </>
                 )}
             </div>

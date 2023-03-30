@@ -2,11 +2,13 @@ import { useMutation } from "@tanstack/react-query";
 import { useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
+import type { task } from "@/pages";
+
 //react-toastify
 import { toast } from "react-toastify";
 
 interface variablesType {
-  userId: string;
+  userEmail: string | undefined | null;
 }
 
 export default function useDeleteManyTask() {
@@ -17,7 +19,7 @@ export default function useDeleteManyTask() {
         const { data } = await axios.post(
           `${process.env.NEXT_PUBLIC_DOMAIN_URL}/api/deleteMany`,
           {
-            userId: variables.userId,
+            userEmail: variables.userEmail,
           }
         );
         return data;
@@ -34,7 +36,35 @@ export default function useDeleteManyTask() {
         });
       }
     },
-    onSuccess: () => {
+    onMutate: async (variables) => {
+      // Cancel current queries for the todos list
+      await queryClient.cancelQueries({ queryKey: ["allTodos"] });
+
+      const previousData = queryClient.getQueryData(["allTodos"]);
+      // Create optimistic todo
+      const optimisticTodo: variablesType = {
+        userEmail: variables.userEmail,
+      };
+
+      // Add optimistic todo to todos list
+      queryClient.setQueryData(["allTodos"], (old: any) => {
+        const newData = old.tasks.filter(
+          (todo: task) => todo.completed !== true
+        );
+
+        return {
+          tasks: newData,
+        };
+      });
+      // Return context with the optimistic todo
+      return { previousData };
+    },
+    onError: (error, variables, context) => {
+      // An error happened!
+
+      queryClient.setQueryData(["allTodo"], context?.previousData);
+    },
+    onSettled: async (data, error, variables, context) => {
       queryClient.invalidateQueries(["allTodos"], {
         exact: true,
       });

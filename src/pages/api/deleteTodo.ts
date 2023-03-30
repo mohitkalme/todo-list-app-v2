@@ -19,6 +19,6 @@ export default async function handler(
       res.status(200).json({ message: "Task deleted" });
     }
   } catch (e) {
-    res.status(500).json({ message: "You must be logged in." });
+    res.status(500).json({ message: "You must be logged in.", e });
   }
 }

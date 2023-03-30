@@ -35,10 +35,11 @@ export default async function handler(
   }
 
   try {
-    const { value } = req.body;
+    const { value, id } = req.body;
     const post = await prisma.post.create({
       data: {
         userId: prismaUser?.id,
+        id,
         value,
       },
     });

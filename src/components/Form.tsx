@@ -3,10 +3,19 @@ import styles from './Form.module.css';
 
 import useCreateTask from "@/hooks/useCreateTask";
 
+//uuid
+import { v4 as uuidv4 } from 'uuid';
+
+//next-auth
+import { useSession } from "next-auth/react"
+
+//react-toastify
+import { toast } from "react-toastify";
 
 export default function Form() {
     const [todoText, setTodoText] = React.useState("");
 
+    const { data: session } = useSession()
 
     const { mutate } = useCreateTask();
 
@@ -16,8 +25,24 @@ export default function Form() {
             return;
         }
 
+        if (!session) {
+            toast.error(`You must be logged in.`, {
+                position: "bottom-left",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            setTodoText("");
+            return
+        }
         mutate({
-            value: todoText
+            id: uuidv4(),
+            value: todoText,
+            completed: false
         })
         setTodoText("");
     }
