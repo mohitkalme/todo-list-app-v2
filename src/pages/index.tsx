@@ -79,7 +79,7 @@ export default function Home({ tasks }: any) {
   function onExit() {
     setState((oldState) => ({ ...oldState, stepsEnabled: false }))
   }
-  console.log('index running')
+
   return (
     <>
       <Head>
