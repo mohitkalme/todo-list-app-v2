@@ -11,7 +11,7 @@ type EditListProps = {
     taskId: string;
     setIsEditing: (value: boolean) => void
 }
-// setIsEditing
+
 export default function EditList({ task, taskId, setIsEditing }: EditListProps) {
     const [text, setText] = useState(task);
 

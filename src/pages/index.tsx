@@ -15,9 +15,6 @@ import useFetchAllTask from "@/hooks/useFetchAllTask";
 //Introjs
 import { Steps, } from "intro.js-react";
 
-//next-auth
-import { useSession } from "next-auth/react"
-
 
 export type task = {
   id: string;
@@ -40,9 +37,7 @@ type HomePropsType = {
 }
 
 
-export default function Home({ tasks, user }: any) {
-
-  // const { data: session } = useSession()
+export default function Home({ tasks, user }: HomePropsType) {
 
   const { data } = useFetchAllTask(tasks);
 
