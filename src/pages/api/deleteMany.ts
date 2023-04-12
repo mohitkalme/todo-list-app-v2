@@ -23,7 +23,7 @@ export default async function handler(
           completed: true,
         },
       });
-      res.status(200).json({ message: "Task deleted" });
+      res.status(200).json({ message: `${count} Task deleted` });
     } else {
       res.status(200).json({ message: "User Doesn't Exist" });
     }

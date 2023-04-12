@@ -22,7 +22,7 @@ img {
 header {
   height: 200px;
   width: 100%;
-  background-image: url("../images/x-gate@4000x2250px.svg");
+  background-image: url("../images/x-gate.svg");
   background-size: cover;
   background-position: center;
 }
@@ -54,7 +54,7 @@ header {
   header {
     height: 300px;
     width: 100%;
-    background-image: url("../images/x-gate@4000x2250px.svg");
+    background-image: url("../images/x-gate.svg");
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;

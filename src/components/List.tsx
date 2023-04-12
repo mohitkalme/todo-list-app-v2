@@ -1,19 +1,35 @@
-import React from "react";
-import { motion } from 'framer-motion'
 import styles from './List.module.css'
+
+//react
+import React, { useState } from "react";
+import { createPortal } from 'react-dom';
+
+import { motion } from 'framer-motion'
+
+//components
 import MoreOptions from "./MoreOptions";
 import EditList from "./EditList";
+import Spinner from "./Spinner";
+
+//nextjs
 import Image from "next/image";
-import { useState } from "react";
 
 
-import { task } from "@/pages";
-
+//hooks
 import useUpdateTask from "@/hooks/useUpdateTask";
+
+import type { task } from "@/pages";
 
 type ListProps = {
     task: task
 }
+
+let domNode: HTMLElement;
+
+if (typeof window !== "undefined") {
+    domNode = document.getElementById('spinner-section') as HTMLElement;
+}
+
 export default function List({ task }: ListProps) {
 
 
@@ -25,7 +41,7 @@ export default function List({ task }: ListProps) {
         damping: 40,
     };
 
-    const { mutate } = useUpdateTask();
+    const { mutate, isLoading, isIdle } = useUpdateTask();
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
 
         mutate({
@@ -74,6 +90,12 @@ export default function List({ task }: ListProps) {
                         </p>
 
                         <MoreOptions taskId={task.id} setIsEditing={setIsEditing} />
+
+                        {isLoading && createPortal(
+                            <Spinner />,
+                            domNode
+
+                        )}
                     </>
                 )}
             </div>

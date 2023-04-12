@@ -1,13 +1,20 @@
 import styles from "./MoreOptions.module.css";
+
+//react
 import { useRef } from "react";
+
+//next
 import Image from "next/image";
 
+//hooks
 import useDeleteTask from "@/hooks/useDeleteTask";
+
 
 type MoreOptionsType = {
     taskId: string;
     setIsEditing: (value: boolean) => void
 }
+
 
 export default function MoreOptions({ taskId, setIsEditing }: MoreOptionsType) {
 
@@ -51,47 +58,50 @@ export default function MoreOptions({ taskId, setIsEditing }: MoreOptionsType) {
         }, 250);
     }
     return (
-        <div className={styles.moreOptionsContainer}>
-            <div className={styles.dropdown} ref={popupRef}>
-                <div className={styles.dropdownItem} onClick={handleDropdownEditAction}>
-                    <button className={styles.dropdownButton}>
+        <>
 
-                        <Image
+            <div className={styles.moreOptionsContainer}>
+                <div className={styles.dropdown} ref={popupRef}>
+                    <div className={styles.dropdownItem} onClick={handleDropdownEditAction}>
+                        <button className={styles.dropdownButton}>
 
-                            src="/icons/EditOutLinedIcon.svg"
-                            alt="icon of pencil in box"
-                            width={20}
-                            height={20}
-                        />
-                        <span className={styles.dropdownText}>Edit</span>
-                    </button>
+                            <Image
+
+                                src="/icons/EditOutLinedIcon.svg"
+                                alt="icon of pencil in box"
+                                width={20}
+                                height={20}
+                            />
+                            <span className={styles.dropdownText}>Edit</span>
+                        </button>
+                    </div>
+
+                    <div className={styles.dropdownItem} onClick={handleDropdownDeleteAction}>
+                        <button className={styles.dropdownButton}>
+
+                            <Image
+                                src="/icons/DeleteOutlinedIcon.svg"
+                                alt="icon trash bin"
+                                width={20}
+                                height={20}
+                            />
+                            <span className={styles.dropdownText}>Delete</span>
+                        </button>
+                    </div>
                 </div>
 
-                <div className={styles.dropdownItem} onClick={handleDropdownDeleteAction}>
-                    <button className={styles.dropdownButton}>
-
+                <div onClick={handleChange} >
+                    <button type="button" className="bg-blue-300 opacity-50 w-8 h-8 rounded-full flex items-center justify-center" aria-label="More Options" onBlur={handleButtonFocusChange}>
                         <Image
-                            src="/icons/DeleteOutlinedIcon.svg"
-                            alt="icon trash bin"
-                            width={20}
-                            height={20}
+                            src="/icons/MoreVertIcon.svg"
+                            alt="three vertical dots"
+                            className="w-[24px] h-[24px]"
+                            width={24}
+                            height={24}
                         />
-                        <span className={styles.dropdownText}>Delete</span>
                     </button>
                 </div>
             </div>
-
-            <div onClick={handleChange} >
-                <button type="button" className="bg-blue-300 opacity-50 w-8 h-8 rounded-full flex items-center justify-center" aria-label="More Options" onBlur={handleButtonFocusChange}>
-                    <Image
-                        src="/icons/MoreVertIcon.svg"
-                        alt="three vertical dots"
-                        className="w-[24px] h-[24px]"
-                        width={24}
-                        height={24}
-                    />
-                </button>
-            </div>
-        </div>
+        </>
     );
 }

@@ -27,13 +27,11 @@ Your users should be able to:
 - Delete todos from the list
 - Filter by all/active/complete todos
 - Clear all completed todos
-- Toggle light and dark mode
-- **Bonus**: Drag and drop to reorder items on the list
 
 ### Links
 
-- Solution URL: [frontend-mentor-Todo-App](https://github.com/mohitkalme/frontend-mentor-todo-list-app)
-- Live Site URL: [frontend-mentor-Todo-App](https://mohitkalme-todo-list.netlify.app/)
+- Solution URL: [todo-list-app-v2](https://github.com/mohitkalme/todo-list-app-v2)
+- Live Site URL: [todo-list-app-v2](https://todo-list-app-v2.vercel.app/)
 
 ### Built with
 
@@ -41,15 +39,16 @@ Your users should be able to:
 - CSS custom properties
 - Flexbox
 - Mobile-first workflow
+- Prisma
+- PlanetScale MySQL database
+- NextAuth
 - [Next.js](https://nextjs.org/) - React Framework
-- [Tailwind css v3.2.7](https://tailwindcss.com/) - For styles
+- [Tailwind css v3.3.1](https://tailwindcss.com/) - For styles
 
 ## Author
 
 - Website - [mohitkalme](https://www.instagram.com/mohitkalme21/?hl=en)
 - Twitter - [@Mohit_kalme](https://twitter.com/Mohit_kalme)
-
-## Available Scripts
 
 ## Ideas
 

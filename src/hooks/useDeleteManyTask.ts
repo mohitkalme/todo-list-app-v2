@@ -1,7 +1,10 @@
-import { useMutation } from "@tanstack/react-query";
-import { useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
+//react-query
+import { useMutation } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
+
+//types
 import type { task } from "@/pages";
 
 //react-toastify
