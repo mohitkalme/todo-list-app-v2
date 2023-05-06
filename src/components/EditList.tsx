@@ -65,7 +65,7 @@ export default function EditList({ task, taskId, setIsEditing }: EditListProps) 
                 <button onClick={handleSave} className="h-10 px-6 font-semibold rounded-md bg-blue-400 text-white" type="submit">
                     Save
                 </button>
-
+                
             </div>
         </form>
     );

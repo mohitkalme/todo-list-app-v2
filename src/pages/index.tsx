@@ -185,8 +185,9 @@ export default function Home({ tasks, user }: HomePropsType) {
                     }  text-light-bottom-text  cursor-pointer`}
                 >
                   Active
-                </li>
-                <li
+                </li> 
+
+                <li 
                   onClick={() => setFilter("Completed")}
                   className={` ${filter === "Completed" ? "filterClicked" : ""
                     }  text-light-bottom-text  cursor-pointer`}
