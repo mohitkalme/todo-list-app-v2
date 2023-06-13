@@ -21,7 +21,7 @@
     "axios": "^1.4.0",
     "eslint": "8.42.0",
     "eslint-config-next": "13.4.4",
-    "framer-motion": "^10.12.11",
+    "framer-motion": "^10.12.16",
     "intro.js": "^7.0.1",
     "intro.js-react": "^0.7.1",
     "next": "13.4.4",
