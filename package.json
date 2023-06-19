@@ -20,7 +20,7 @@
     "@vercel/analytics": "^1.0.1",
     "axios": "^1.4.0",
     "eslint": "8.42.0",
-    "eslint-config-next": "13.4.4",
+    "eslint-config-next": "13.4.6",
     "framer-motion": "^10.12.16",
     "intro.js": "^7.0.1",
     "intro.js-react": "^1.0.0",
